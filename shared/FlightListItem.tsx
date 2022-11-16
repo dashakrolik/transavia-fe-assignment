@@ -16,11 +16,11 @@ const FlightListItem: FC<TFlightListItem> = (props) => {
   } = props;
 
   return (
-    <div className={styles.flightsListItemContainer} key={outboundFlight?.id}>
-      <span>Flight id: {outboundFlight?.id}</span>
-      <span>Departure date and time: {formatDate(outboundFlight?.departureDateTime, true)}</span>
-      <span>Arrival date and time: {formatDate(outboundFlight?.arrivalDateTime, true)}</span>
-      <span>Price: {pricingInfoSum?.totalPriceAllPassengers}</span>
+    <div data-testid="flightlist-item-container" className={styles.flightsListItemContainer} key={outboundFlight?.id}>
+      <span data-testid="flightlist-item-flight-id">Flight id: {outboundFlight?.id}</span>
+      <span data-testid="flightlist-item-departure-date-time">Departure date and time: {formatDate(outboundFlight?.departureDateTime, true)}</span>
+      <span data-testid="flightlist-item-arrival-date-time">Arrival date and time: {formatDate(outboundFlight?.arrivalDateTime, true)}</span>
+      <span  data-testid="flightlist-item-price">Price: {pricingInfoSum?.totalPriceAllPassengers}</span>
       {/* {children} */}
     </div>
   );

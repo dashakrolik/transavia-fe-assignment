@@ -11,7 +11,10 @@ const FlightsList: FC<TFlightsList> = (props) => {
   const { listItems } = props;
 
   return (
-    <div className={styles.flightsListContainer}>
+    <div
+      data-testid="flights-list-container"
+      className={styles.flightsListContainer}
+    >
       {listItems.map((flight: Flight) => {
         return (
           <FlightListItem
@@ -23,8 +26,8 @@ const FlightsList: FC<TFlightsList> = (props) => {
       {listItems.length === 0 && (
         // this is not great styling / css / structure...rewrite if there is still time
         <div style={{ marginTop: "64px" }}>
-          <div className={styles.noFlightsFoundContainer}>
-            <span className={styles.titleSmall}>No flights found</span>
+          <div data-testid="flights-list-no-flights-found-container" className={styles.noFlightsFoundContainer}>
+            <span data-testid="flights-list-no-flights-found-text" className={styles.titleSmall}>No flights found</span>
           </div>
         </div>
       )}
