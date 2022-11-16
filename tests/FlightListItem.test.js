@@ -28,7 +28,7 @@ const mockFlight = {
   },
 };
 
-describe("flight list item", () => {
+describe("flight list item component", () => {
   it("renders a flight list item", () => {
     render(<FlightListItem flight={mockFlight} />);
     // check if all components are rendered
