@@ -4,6 +4,7 @@ This is a frontend assessment for Transavia. The assignment includes creating a 
 
 ## Folder structure
 - pages: contains pages of the app
+- helpers: contains a helper function for date formatting
 - shared: components that are shared across the app to avoid duplication (Autocomplete) and components that should be separate for separation of concerns (list item, and list item container)
 - mock-data: contains the mock json responses
 - tests: unit tests
