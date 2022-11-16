@@ -6,14 +6,13 @@ export default function handler(req: any, res: any) {
   // in the command line where next.js app is running.
   console.log('body: ', body)
 
-  // Guard clause checks for first and last name,
-  // and returns early if they are not found
-  if (!body.first || !body.last) {
+  // Guard clause checks
+  // Returns early if input not found
+  if (!body.origin || !body.destination || !body.departureDate) {
     // Sends a HTTP bad request error code
-    return res.status(400).json({ data: 'First or last name not found' })
+    return res.status(400).json({ data: 'Origin, destination, or departure date not found' })
   }
 
-  // Found the name.
   // Sends a HTTP success code
-  res.status(200).json({ data: `${body.first} ${body.last}` })
+  res.status(200).json({ data: `${body.origin}, ${body.destination}, ${body.departureDate}` })
 }
