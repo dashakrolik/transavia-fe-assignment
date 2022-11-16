@@ -4,17 +4,22 @@ import styles from '../styles/Home.module.css'
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import List from '../shared/FlightsList';
+// Better to mock api response instead of importing json data
 let flightsFromAMS = require("../mock-data/flights-from-AMS.json");
-
 
 // @TODO: add a helper function for transforming dates (duplicated twice)
 // delete unused
 // shared input component
 export default function PageWithJSbasedForm() {
-  const [startDate, setStartDate] = useState(new Date());
-  // Handle the submit event on form submit.
+  const [startDate, setStartDate] = useState<Date>(new Date());
+  // if we add an interface for the json response we should type useState as such
+  const [flightsList, setFlightsList] = useState<[]>([]);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+
+  // Handle the submit event on form submit
   const handleSubmit = async (event: FormEvent) => {
-    // Stop the form from submitting and refreshing the page.
+    // Stop the form from submitting and refreshing the page
     event.preventDefault()
 
     // Cast the event target to an html form
@@ -81,6 +86,8 @@ export default function PageWithJSbasedForm() {
       return flightDateWithSlashes === departureDate;
     });
     console.log(filteredFlights)
+    setFlightsList(filteredFlights);
+    setIsSubmitted(true);
     return filteredFlights;
   }
 
@@ -120,6 +127,8 @@ export default function PageWithJSbasedForm() {
           <button className={styles.buttonPrimary} type="submit">Search</button>
         </form>
       </div>
+
+      {isSubmitted && (<List listItems={flightsList} />)}
     </div>
   );
 }
