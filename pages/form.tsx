@@ -13,10 +13,9 @@ let flightsFromAMS = require("../mock-data/flights-from-AMS.json");
 let airports = require("../mock-data/airports.json");
 // @TODO: add a helper function for transforming dates (duplicated twice)
 // delete unused
-// shared input component
+// shared flex / bootstrap component or classnames
 export default function PageWithJSbasedForm() {
   const [startDate, setStartDate] = useState<Date>(new Date());
-  // if we add an interface for the json response we should type useState as such
   const [flightsList, setFlightsList] = useState<[]>([]);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [option, setOption] = useState([]);
@@ -26,7 +25,7 @@ export default function PageWithJSbasedForm() {
     setOption(event.target.value);
   };
   const formattedAirports = airports.Airports.map((item: any) => {
-    return { name: item.ItemName, id: item.ItemName };
+    return { name: item.Description, id: item.ItemName };
   });
   // Handle the submit event on form submit
   const handleSubmit = async (event: FormEvent) => {
@@ -60,6 +59,7 @@ export default function PageWithJSbasedForm() {
     destination: string,
     departureDate: string
   ) => {
+    // add type instead of any
     const filteredFlights = flightsFromAMS.flightOffer.filter((item: any) => {
       const formattedFlightDate = formatDate(
         item.outboundFlight.departureDateTime
@@ -125,6 +125,7 @@ export default function PageWithJSbasedForm() {
               className={styles.fieldInput}
               selected={startDate}
               onChange={(date: Date) => onDateChange(date)}
+              required
             />
           </div>
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 
 import TextField from "@mui/material/TextField";
-
+import styles from '../styles/Home.module.css'
 // define types instead of any
 type TAutoCompleteSearchProps = {
   onOptionSelect(event: any): void;
@@ -20,10 +20,9 @@ const AutoCompleteSearch: FC<TAutoCompleteSearchProps> = (props) => {
   return (
     <div>
       <Autocomplete
-        isOptionEqualToValue={(option: any, value) =>
-          option.value === value.value
-        }
-        getOptionLabel={(option) => option.name}
+        isOptionEqualToValue={(option: any, value) => option.value === value.value}
+        renderOption={(props: any, option) => (<div key={option.name} {...props} >{option.name}</div>)}
+        getOptionLabel={(option) => option.id}
         onSelect={onOptionSelect}
         disablePortal
         id="combo-box-demo"
