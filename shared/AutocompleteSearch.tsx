@@ -28,7 +28,7 @@ const AutoCompleteSearch: FC<TAutoCompleteSearchProps> = (props) => {
         disablePortal
         id="combo-box-demo"
         options={options}
-        sx={{ width: "100%", border: "none" }}
+        sx={sx}
         renderInput={(params) =>  <TextField
           {...params}
           id={textfieldId}

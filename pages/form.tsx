@@ -6,8 +6,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import List from "../shared/FlightsList";
 import { formatDate } from "../helpers/formatDate";
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
 import AutoCompleteSearch from "../shared/AutocompleteSearch";
 
 // Better to mock api response instead of importing json data
@@ -57,6 +55,13 @@ export default function PageWithJSbasedForm() {
     //   // The method is POST because we are sending data.
     //   method: 'POST',
     // })
+    const origin = form.origin.value;
+    const destination = form.destination.value;
+
+    if (origin === destination) {
+      alert('origin cannot be the same as destination');
+      return;
+    }
 
     const formattedFormDepartureDate = formatDate(startDate);
     showFlights(
