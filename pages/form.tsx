@@ -1,8 +1,12 @@
 // import Link from 'next/link'
 import { FormEvent } from 'react'
 import styles from '../styles/Home.module.css'
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function PageWithJSbasedForm() {
+  const [startDate, setStartDate] = useState(new Date());
   // Handle the submit event on form submit.
   const handleSubmit = async (event: FormEvent) => {
     // Stop the form from submitting and refreshing the page.
@@ -15,7 +19,7 @@ export default function PageWithJSbasedForm() {
     const data = {
       origin: form.origin.value as string,
       destination: form.destination.value as string,
-      departureDate: form.departureDate.value as string,
+      departureDate: startDate,
     }
 
     console.log(data, 'form data')
@@ -34,8 +38,19 @@ export default function PageWithJSbasedForm() {
     // Get the response data from server as JSON.
     // If server returns the name submitted, that means the form works.
     const result = await response.json()
-    alert(`Is this your input: ${result.data}`)
+    console.log(`Is this your input: ${result.data}`)
   }
+
+  const onDateChange = (date: any) => {
+    // const form = event.target as HTMLFormElement;
+
+    // const data = {
+    //   departureDate: form.departureDate.value as string,
+    // }
+
+    setStartDate(date)
+  }
+
   return (
     <div className="container">
       {/* <h1 className={styles.title}>
@@ -64,8 +79,10 @@ export default function PageWithJSbasedForm() {
 
           <label className={styles.fieldLabel} htmlFor="departureDate">Departure date</label>
           <div className={styles.fieldButton}>
-          <input className={styles.fieldInput} type="text" id="departureDate" name="departureDate" required />
+          <DatePicker minDate={new Date()} className={styles.fieldInput} selected={startDate} onChange={(date:Date) => onDateChange(date)} />
           </div>
+
+         
 
           <button className={styles.buttonPrimary} type="submit">Search</button>
         </form>
