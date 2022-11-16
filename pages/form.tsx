@@ -1,4 +1,4 @@
-import Link from 'next/link'
+// import Link from 'next/link'
 import { FormEvent } from 'react'
 import styles from '../styles/Home.module.css'
 
@@ -13,10 +13,12 @@ export default function PageWithJSbasedForm() {
 
     // Get data from the form.
     const data = {
-      first: form.first.value as string,
-      last: form.last.value as string,
+      origin: form.origin.value as string,
+      destination: form.destination.value as string,
+      departureDate: form.departureDate.value as string,
     }
 
+    console.log(data, 'form data')
     // Send the form data to our API and get a response.
     const response = await fetch('/api/form', {
       // Body of the request is the JSON data we created above.
@@ -32,7 +34,7 @@ export default function PageWithJSbasedForm() {
     // Get the response data from server as JSON.
     // If server returns the name submitted, that means the form works.
     const result = await response.json()
-    alert(`Is this your full name: ${result.data}`)
+    alert(`Is this your input: ${result.data}`)
   }
   return (
     <div className="container">
