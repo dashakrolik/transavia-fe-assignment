@@ -21,7 +21,7 @@ const FlightsList: FC<TFlightsList> = (props) => {
         );
       })}
       {listItems.length === 0 && (
-        // this is not good styling / css / structure...rewrite if there is still time
+        // this is not great styling / css / structure...rewrite if there is still time
         <div style={{ marginTop: "64px" }}>
           <div className={styles.noFlightsFoundContainer}>
             <span className={styles.titleSmall}>No flights found</span>

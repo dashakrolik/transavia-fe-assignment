@@ -35,26 +35,6 @@ export default function PageWithJSbasedForm() {
 
     // Cast the event target to an html form
     const form = event.target as HTMLFormElement;
-
-    // Get data from the form.
-    // const data = {
-    //   origin: form.origin.value as string,
-    //   destination: form.destination.value as string,
-    //   departureDate: startDate,
-    // }
-
-    // console.log(data, 'form data')
-    // Send the form data to our API and get a response.
-    // const response = await fetch('/api/form', {
-    //   // Body of the request is the JSON data we created above.
-    //   body: JSON.stringify(data),
-    //   // Tell the server we're sending JSON.
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   // The method is POST because we are sending data.
-    //   method: 'POST',
-    // })
     const origin = form.origin.value;
     const destination = form.destination.value;
 
@@ -68,12 +48,6 @@ export default function PageWithJSbasedForm() {
       form.origin.value,
       form.destination.value,
       formattedFormDepartureDate
-    );
-    console.log(
-      form.origin.value,
-      form.destination.value,
-      formattedFormDepartureDate,
-      "formdata!!!"
     );
   };
 
@@ -103,6 +77,8 @@ export default function PageWithJSbasedForm() {
     return filteredFlights;
   };
 
+  const sx = { width: "100%", border: "none" };
+
   return (
     <div>
       <p className={styles.description}>Where would you like to go?</p>
@@ -116,24 +92,10 @@ export default function PageWithJSbasedForm() {
             Origin
           </label>
           <div className={styles.fieldButton}>
-            {/* <Autocomplete
-              isOptionEqualToValue={(option: any, value) =>
-                option.value === value.value
-              }
-              onSelect={onOptionSelect}
-              getOptionLabel={(option) => option.name}
-              disablePortal
-              id="combo-box-demo"
-              options={formattedAirports}
-              sx={{ width: "100%", border: "none" }}
-              renderInput={(params) => (
-                <TextField {...params} id="origin" name="origin" label="" />
-              )}
-            /> */}
             <AutoCompleteSearch
               onOptionSelect={onOptionSelect}
               options={formattedAirports}
-              sx={{ width: "100%", border: "none" }}
+              sx={sx}
               textfieldId="origin"
               textfieldName="origin"
               textfieldLabel="type origin of flight"
@@ -144,11 +106,10 @@ export default function PageWithJSbasedForm() {
             Destination
           </label>
           <div className={styles.fieldButton}>
-            {/* <input className={styles.fieldInput}type="text" id="destination" name="destination" required /> */}
             <AutoCompleteSearch
               onOptionSelect={onOptionSelect}
               options={formattedAirports}
-              sx={{ width: "100%", border: "none" }}
+              sx={sx}
               textfieldId="destination"
               textfieldName="destination"
               textfieldLabel="type your destination"
