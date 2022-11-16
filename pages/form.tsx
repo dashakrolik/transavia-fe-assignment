@@ -4,7 +4,12 @@ import styles from '../styles/Home.module.css'
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+let flightsFromAMS = require("../mock-data/flights-from-AMS.json");
 
+
+// @TODO: add a helper function for transforming dates (duplicated twice)
+// delete unused
+// shared input component
 export default function PageWithJSbasedForm() {
   const [startDate, setStartDate] = useState(new Date());
   // Handle the submit event on form submit.
@@ -22,7 +27,7 @@ export default function PageWithJSbasedForm() {
       departureDate: startDate,
     }
 
-    console.log(data, 'form data')
+    // console.log(data, 'form data')
     // Send the form data to our API and get a response.
     const response = await fetch('/api/form', {
       // Body of the request is the JSON data we created above.
@@ -38,10 +43,21 @@ export default function PageWithJSbasedForm() {
     // Get the response data from server as JSON.
     // If server returns the name submitted, that means the form works.
     const result = await response.json()
-    console.log(`Is this your input: ${result.data}`)
+    // console.log(`Is this your input: ${result.data}`)
+    const flightDate = new Date(startDate);
+
+    const year = flightDate.getFullYear();
+    const month = flightDate.getMonth() + 1;
+    const day = flightDate.getDate();
+    const dateWithSlashes = [year, month, day].join('/');
+    showFlights(form.origin.value, form.destination.value, dateWithSlashes);
   }
 
-  const onDateChange = (date: any) => {
+  const onOriginInputFocus = () => {
+    
+  }
+
+  const onDateChange = (date: any): void => {
     // const form = event.target as HTMLFormElement;
 
     // const data = {
@@ -49,6 +65,23 @@ export default function PageWithJSbasedForm() {
     // }
 
     setStartDate(date)
+  }
+
+  const showFlights = (origin: string, destination: string, departureDate: string) => {
+    const filteredFlights = flightsFromAMS.flightOffer.filter((item: any) => {
+      const flightDate = new Date(item.outboundFlight.departureDateTime);
+
+      const year = flightDate.getFullYear();
+      const month = flightDate.getMonth() + 1;
+      const day = flightDate.getDate();
+
+      const flightDateWithSlashes = [year, month, day].join('/');
+
+
+      return flightDateWithSlashes === departureDate;
+    });
+    console.log(filteredFlights)
+    return filteredFlights;
   }
 
   return (
@@ -69,7 +102,7 @@ export default function PageWithJSbasedForm() {
         >
           <label className={styles.fieldLabel} htmlFor="origin">Origin</label>
           <div className={styles.fieldButton}>
-            <input className={styles.fieldInput} type="text" id="origin" name="origin" required />
+            <input onFocus={() => onOriginInputFocus()} className={styles.fieldInput} type="text" id="origin" name="origin" required />
           </div>
 
           <label className={styles.fieldLabel} htmlFor="destination">Destination</label>
