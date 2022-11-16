@@ -11,19 +11,16 @@ import AutoCompleteSearch from "../shared/AutocompleteSearch";
 // Better to mock api response instead of importing json data
 let flightsFromAMS = require("../mock-data/flights-from-AMS.json");
 let airports = require("../mock-data/airports.json");
-// @TODO: add a helper function for transforming dates (duplicated twice)
-// delete unused
-// shared flex / bootstrap component or classnames
+// @TODO: shared flex / bootstrap component or classnames
 export default function PageWithJSbasedForm() {
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [flightsList, setFlightsList] = useState<[]>([]);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
-  const [option, setOption] = useState([]);
+  // const [option, setOption] = useState([]);
 
-  const onOptionSelect = (event: any) => {
-    console.log(event.target.value);
-    setOption(event.target.value);
-  };
+  // const onOptionSelect = (event: any) => {
+  //   setOption(event.target.value);
+  // };
   const formattedAirports = airports.Airports.map((item: any) => {
     return { name: item.Description, id: item.ItemName };
   });
@@ -38,7 +35,7 @@ export default function PageWithJSbasedForm() {
     const destination = form.destination.value;
 
     if (origin === destination) {
-      alert('origin cannot be the same as destination');
+      alert("origin cannot be the same as destination");
       return;
     }
 
@@ -50,9 +47,7 @@ export default function PageWithJSbasedForm() {
     );
   };
 
-  const onDateChange = (date: any): void => {
-    setStartDate(date);
-  };
+  const onDateChange = (date: any): void => setStartDate(date);
 
   const showFlights = (
     origin: string,
@@ -77,23 +72,36 @@ export default function PageWithJSbasedForm() {
     return filteredFlights;
   };
 
-  const sx = { width: "100%", border: "none" };
+  const sx = { width: "100%" };
 
   return (
-    <div>
-      <p className={styles.description}>Where would you like to go?</p>
+    <div data-testid="form-container">
+      <p data-testid="form-paragraph" className={styles.description}>
+        Where would you like to go?
+      </p>
 
-      <div className={styles.formFieldContainer} style={{ maxWidth: "500px" }}>
+      <div
+        data-testid="form-fields-container"
+        className={styles.formFieldContainer}
+        style={{ maxWidth: "500px" }}
+      >
         <form
+          data-testid="flights-form"
           style={{ display: "flex", flexDirection: "column" }}
           onSubmit={handleSubmit}
         >
-          <label className={styles.fieldLabel} htmlFor="origin">
+          <label
+            data-testid="flights-form-origin-label"
+            className={styles.fieldLabel}
+            htmlFor="origin"
+          >
             Origin
           </label>
-          <div className={styles.fieldButton}>
+          <div
+            data-testid="flights-form-origin-field-button"
+            className={styles.fieldButton}
+          >
             <AutoCompleteSearch
-              onOptionSelect={onOptionSelect}
               options={formattedAirports}
               sx={sx}
               textfieldId="origin"
@@ -102,12 +110,18 @@ export default function PageWithJSbasedForm() {
             />
           </div>
 
-          <label className={styles.fieldLabel} htmlFor="destination">
+          <label
+            data-testid="flights-form-destination-label"
+            className={styles.fieldLabel}
+            htmlFor="destination"
+          >
             Destination
           </label>
-          <div className={styles.fieldButton}>
+          <div
+            data-testid="flights-form-destination-field-button"
+            className={styles.fieldButton}
+          >
             <AutoCompleteSearch
-              onOptionSelect={onOptionSelect}
               options={formattedAirports}
               sx={sx}
               textfieldId="destination"
@@ -116,10 +130,17 @@ export default function PageWithJSbasedForm() {
             />
           </div>
 
-          <label className={styles.fieldLabel} htmlFor="departureDate">
+          <label
+            data-testid="flights-form-departure-date-label"
+            className={styles.fieldLabel}
+            htmlFor="departureDate"
+          >
             Departure date
           </label>
-          <div className={styles.fieldButton}>
+          <div
+            data-testid="flights-form-departure-date-field-button"
+            className={styles.fieldButton}
+          >
             <DatePicker
               minDate={new Date()}
               className={styles.fieldInput}
@@ -130,6 +151,7 @@ export default function PageWithJSbasedForm() {
           </div>
 
           <button
+            data-testid="flights-form-submit-button"
             style={{ marginTop: "16px" }}
             className={styles.buttonPrimary}
             type="submit"

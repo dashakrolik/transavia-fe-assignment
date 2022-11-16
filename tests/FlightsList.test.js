@@ -70,7 +70,11 @@ describe("flights list component", () => {
   it("renders a no flights component if there are no flights found", () => {
     render(<FlightsList listItems={[]} />);
     // check if all components are rendered
-    expect(screen.getByTestId("flights-list-no-flights-found-container")).toBeInTheDocument();
-    expect(screen.getByTestId("flights-list-no-flights-found-text")).toBeInTheDocument();
+    expect(
+      screen.getByTestId("flights-list-no-flights-found-container")
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTestId("flights-list-no-flights-found-text")
+    ).toBeInTheDocument();
   });
 });

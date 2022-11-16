@@ -6,8 +6,7 @@ import TextField from "@mui/material/TextField";
 
 // define types instead of any
 type TAutoCompleteSearchProps = {
-  onOptionSelect(event: any): void;
-  options: any;
+  options: { name: string; id: string }[];
   sx: any;
   textfieldId: string;
   textfieldName: string;
@@ -15,7 +14,7 @@ type TAutoCompleteSearchProps = {
 };
 
 const AutoCompleteSearch: FC<TAutoCompleteSearchProps> = (props) => {
-  const { onOptionSelect, options, sx, textfieldId, textfieldName, textfieldLabel } = props;
+  const { options, sx, textfieldId, textfieldName, textfieldLabel } = props;
 
   return (
     <div data-testid="autocomplete-container">
@@ -30,14 +29,13 @@ const AutoCompleteSearch: FC<TAutoCompleteSearchProps> = (props) => {
           </div>
         )}
         getOptionLabel={(option) => option.id}
-        onSelect={onOptionSelect}
         disablePortal
         id="combo-box-demo"
         options={options}
         sx={sx}
         renderInput={(params) => (
           <TextField
-          data-testid="autocomplete-input"
+            data-testid="autocomplete-input"
             {...params}
             id={textfieldId}
             name={textfieldName}

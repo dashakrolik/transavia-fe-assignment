@@ -1,8 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Description
 
+This is a frontend assessment for Transavia. The assignment includes creating a form with three fields: origin, destination, and departure date as well as unit tests (more info in the assignment description sent via email)
+
+## Folder structure
+- pages: contains pages of the app
+- shared: components that are shared across the app to avoid duplication (Autocomplete) and components that should be separate for separation of concerns (list item, and list item container)
+- mock-data: contains the mock json responses
+- tests: unit tests
+- typings: added one type for Flight
+
+## Self-reflection on achieved progress and improvements
+- use loop instead of map for flights and any other big data set for improved performance
+- used any quite a lot due to prioritization of functionality. Should use specific types and remove any where possible (it mostly is possible across the app)
+- some styling is inline, that should be removed
+- separate css files should be added instead of just one where all the CSS is currently
+- add global styles / bootstrap classes for generic use such as flex, padding, etc
+- mobile friendly - looks ok but could be much better
+- form component can be refactored to be cleaner and more concise
+- should add possibility that the value in the form when selected still stays as the full name of the airport and not the abbreviation, same as on transavia website. did not have time to finish that
+- added prop-types and subsequently deleted, but could be useful for shared components like autocomplete
+- props should be destructured where possible or not destructured, decide on a uniform strategy
+- experimented a bit in the pages/api folder, please disregard, was just playing with next.js :)
+- some naming (e.g. of the class fieldButton is not verbose and i personally think not clear enough) should be worked on further to improve
+- test for the form component should be more extensive (!)
+- imports order can be added to config for automatic sorting from third party to local etc.
 ## Getting Started
 
-First, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
@@ -12,20 +36,11 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+## Unit testing
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+To launch unit tests (all) run ```npm test a``` in your terminal.
 
 ## Deploy on Vercel
 
