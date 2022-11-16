@@ -8,7 +8,7 @@ export const formatDate = (date?: string | Date, showTime?: boolean) => {
     const month = flightDate && flightDate.getMonth() + 1;
     const day = flightDate && flightDate.getDate();
     const time = flightDate && flightDate.getHours() + ':' + flightDate.getMinutes();
-    console.log(time)
     const formattedDate = showTime ? [year, month, day].join('/') + ' ' + time : [year, month, day].join('/');
+
     return formattedDate;
 }
