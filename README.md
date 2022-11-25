@@ -8,7 +8,7 @@ This is a frontend assessment for Transavia. The assignment includes creating a 
 - shared: components that are shared across the app to avoid duplication (Autocomplete) and components that should be separate for separation of concerns (list item, and list item container)
 - mock-data: contains the mock json responses
 - tests: unit tests
-- typings: added one type for Flight
+- types: added one type for Flight
 
 ## Self-reflection on achieved progress and improvements
 - use loop instead of map for flights and any other big data set for improved performance
