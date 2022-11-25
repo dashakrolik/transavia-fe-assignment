@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import List from "../shared/FlightsList";
+import FlightsList from "../shared/FlightsList";
 import { formatDate } from "../helpers/formatDate";
 import AutoCompleteSearch from "../shared/AutocompleteSearch";
 
@@ -161,7 +161,7 @@ export default function PageWithJSbasedForm() {
         </form>
       </div>
 
-      {isSubmitted && <List listItems={flightsList} />}
+      {isSubmitted && <FlightsList listItems={flightsList} />}
     </div>
   );
 }
