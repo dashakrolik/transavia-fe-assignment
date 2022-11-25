@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styles from "../styles/Home.module.css";
 import { formatDate } from "../helpers/formatDate";
-import { Flight } from "../typings/flights";
+import { Flight } from "../types/flights";
 
 export type TFlightListItem = {
   flight: Flight;

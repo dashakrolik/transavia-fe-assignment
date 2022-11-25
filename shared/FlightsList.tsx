@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import FlightListItem from "./FlightListItem";
 import styles from "../styles/Home.module.css";
-import { Flight } from "../typings/flights";
+import { Flight } from "../types/flights";
 
 export type TFlightsList = {
   listItems: Flight[];
